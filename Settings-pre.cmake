@@ -1,0 +1,28 @@
+
+set(PARALLEL_BUILDS ON)
+
+set(LIST_SEPARATOR "<semi-colon>")
+
+set(COMMON_PACKAGE_CONFIG_DIR share/cmake/)
+
+set(EXTPROJ_BASE_DIR extproj)
+set(EXTPROJ_TMP_DIR ${EXTPROJ_BASE_DIR}/tmp)
+set(EXTPROJ_STAMP_DIR ${EXTPROJ_BASE_DIR}/stamp)
+
+set(DEFAULT_UTILITIES_GITHUB_ORG OpenCMISS-utilities/)
+set(DEFAULT_DEPENDENCY_GITHUB_ORG OpenCMISS-dependencies/)
+set(DEFAULT_OPENCMISS_GITHUB_ORG OpenCMISS/)
+
+# Basic test for multi-configuration capable environments
+if (IS_MULTI_CONFIG)
+    set(MULTICONFIG_BUILD_CONFIG --config $<CONFIGURATION>)
+else()
+    set(SINGLE_BUILD_DIR_LABEL -release)
+    set(SINGLE_BUILD_CONFIG -DCMAKE_BUILD_TYPE=Release)
+endif()
+
+set(LIBXML2_WITH_ZLIB ON)
+set(HDF5_WITH_SZIP ON)
+set(HDF5_WITH_ZLIB ON)
+set(FIELDML-API_WITH_HDF5 ON)
+set(OPTPP_WITH_BLAS ON)

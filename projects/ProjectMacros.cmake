@@ -1,0 +1,11 @@
+macro(add_downstream_dependencies COMPONENT_NAME)
+#message(STATUS "${COMPONENT_NAME}_FWD_DEPS: ${${COMPONENT_NAME}_FWD_DEPS}")
+    if (${COMPONENT_NAME}_FWD_DEPS)
+        # Add all new forward dependencies of component
+        foreach(FWD_DEP ${${COMPONENT_NAME}_FWD_DEPS})
+            list(APPEND ${FWD_DEP}_DEPENDS ${COMPONENT_NAME})
+#            message(STATUS "${FWD_DEP}_DEPENDS: ${${FWD_DEP}_DEPENDS}")
+          set(${FWD_DEP}_DEPENDS ${${FWD_DEP}_DEPENDS} PARENT_SCOPE)
+        endforeach()
+    endif()
+endmacro()
