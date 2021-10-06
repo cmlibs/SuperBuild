@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 project(OpenCMISS-Setup-Zinc LANGUAGES C CXX)
 
@@ -51,6 +51,7 @@ endif()
 set(GITHUB_PROTOCOL ${_GITHUB_PROTOCOL} CACHE STRING "Set GitHub protocol.")
 mark_as_advanced(GITHUB_PROTOCOL)
 
+set(OPENCMISS_PROJECTS CMAKE_MODULES)
 set(ALL_PROJECTS CMAKE_MODULES)
 
 # load settings for mode

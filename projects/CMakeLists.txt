@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 project(OpenCMISS-Projects LANGUAGES C CXX)
 
@@ -134,6 +134,7 @@ if (HDF5 IN_LIST ALL_PROJECTS)
 
     add_project(HDF5
         BUILD_TESTS=OFF
+        OCMS_BUILD=ON
         WITH_SZIP=${HDF5_USE_SZIP}
         SZIP_FIND_SYSTEM=OFF
         SZIP_VERSION=${SZIP_VERSION}

@@ -31,6 +31,7 @@ function(add_project _PROJECT_NAME)
     # Shared or static?
     if (_PROJECT_NAME IN_LIST DEPENDENCY_PROJECTS)
       list(APPEND _PROJECT_DEFS -DBUILD_SHARED_LIBS=OFF)
+      list(APPEND _PROJECT_DEFS -DENABLE_PIC=ON)
     endif()
 
     # Forward any other variables
