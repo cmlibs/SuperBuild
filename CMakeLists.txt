@@ -29,8 +29,9 @@ set(OPENCMISS_BUILD_TYPE Release CACHE STRING "Set the configuration build type.
 set(OPENCMISS_ROOT "" CACHE PATH "The location of the OpenCMISS root directory, must exist!")
 set(BUILD_CONFIGS all dependencies)
 set(OPENCMISS_SETUP_TYPE "all" CACHE STRING "Define what should be setup.")
-set(OPENCMISS_PYTHON_EXECUTABLE "python" CACHE FILEPATH "Set the Python to use.")
 set_property(CACHE OPENCMISS_SETUP_TYPE PROPERTY STRINGS ${BUILD_CONFIGS})
+set(OPENCMISS_PYTHON_EXECUTABLE "python" CACHE FILEPATH "Set the Python to use.")
+set(OPENCMISS_USER_SETTINGS_FILE "" CACHE FILEPATH "Set the user settings file. Default: ''")
 
 # Internalise some variables that don't have any meaning here
 set(CMAKE_BUILD_TYPE "Release" CACHE INTERNAL "Internalise CMAKE_BUILD_TYPE")
@@ -95,6 +96,7 @@ list(APPEND PROJECT_ARGS -DOPENCMISS_MODE=${OPENCMISS_MODE})
 list(APPEND PROJECT_ARGS -DOPENCMISS_BUILD_TYPE=${OPENCMISS_BUILD_TYPE})
 list(APPEND PROJECT_ARGS -DOPENCMISS_SETUP_TYPE=${OPENCMISS_SETUP_TYPE})
 list(APPEND PROJECT_ARGS -DOPENCMISS_PYTHON_EXECUTABLE=${OPENCMISS_PYTHON_EXECUTABLE})
+list(APPEND PROJECT_ARGS -DOPENCMISS_USER_SETTINGS_FILE=${OPENCMISS_USER_SETTINGS_FILE})
 
 ExternalProject_Add(setup_projects
     DEPENDS setup_cmake_modules
