@@ -17,9 +17,11 @@ include(ProjectFunctions)
 include(ProjectMacros)
 include(Functions)
 
+set(Python_EXECUTABLE ${OPENCMISS_PYTHON_EXECUTABLE})
+
 find_package(Git)
 find_package(SWIG)
-find_package(Python3 COMPONENTS Interpreter Development)
+find_package(Python COMPONENTS Interpreter Development)
 
 if (NOT GITHUB_PROTOCOL)
     get_github_protocol(_GITHUB_PROTOCOL)
@@ -56,7 +58,7 @@ set(OPENCMISS_DEPENDENCIES_CONFIG ${CMAKE_CURRENT_BINARY_DIR}/opencmissdependenc
 configure_file(opencmissdependencies-config.in.cmake ${OPENCMISS_DEPENDENCIES_CONFIG} @ONLY)
 configure_file(${OPENCMISS_DEPENDENCIES_CONFIG} ${_INSTALL_PREFIX}/opencmissdependencies-config.cmake @ONLY)
 
-if (SWIG_FOUND AND Python3_Interpreter_FOUND AND Python3_Development_FOUND)
+if (SWIG_FOUND AND Python_Interpreter_FOUND AND Python_Development_FOUND)
     set(ZINC_WITH_Python_BINDINGS TRUE)
 endif()
 if (ZLIB IN_LIST ALL_PROJECTS)
@@ -187,7 +189,8 @@ endif ()
 
 if (GLEW IN_LIST ALL_PROJECTS)
     set(GLEW_FWD_DEPS ZINC)
-    add_project(GLEW)
+    add_project(GLEW
+      GLEW_BUILD_OSMESA=${OPENCMISS_USE_OSMESA})
 endif ()
 
 if (OPTPP IN_LIST ALL_PROJECTS)
@@ -244,7 +247,7 @@ if (GDCM-ABI IN_LIST ALL_PROJECTS)
             set(GDCM_USE_SYSTEM_EXPAT OFF)
         endif ()
         add_project(GDCM-ABI
-            GDCM_INSTALL_PACKAGE_DIR=${COMMON_PACKAGE_CONFIG_DIR}GDCM-ABI
+            GDCM_INSTALL_PACKAGE_DIR=${BASE_PACKAGE_CONFIG_DIR}GDCM-ABI
             ZLIB_FIND_SYSTEM=${ZLIB_FIND_SYSTEM}
             ZLIB_VERSION=${ZLIB_VERSION}
             GDCM_USE_SYSTEM_ZLIB=ON
@@ -282,7 +285,7 @@ if (ITK IN_LIST ALL_PROJECTS)
     add_project(ITK
         ITK_BUILD_TESTING=OFF
         ITK_BUILD_EXAMPLES=OFF
-        ITK_INSTALL_PACKAGE_DIR=${COMMON_PACKAGE_CONFIG_DIR}ITK
+        ITK_INSTALL_PACKAGE_DIR=${BASE_PACKAGE_CONFIG_DIR}ITK
         ${HDF5_SETTINGS}
         ITK_USE_SYSTEM_PNG=ON
         ITK_USE_SYSTEM_TIFF=OFF # ITK now uses bigtiff, which is different from tiff
@@ -312,12 +315,13 @@ if (ZINC IN_LIST ALL_PROJECTS)
     set(ZINC_FWD_DEPS SWIGZINC)
     add_project(ZINC
         ZINC_BUILD_TESTS=${ZINC_BUILD_TESTS}
-        ZINC_PACKAGE_CONFIG_DIR=${COMMON_PACKAGE_CONFIG_DIR}ZINC
+        ZINC_PACKAGE_CONFIG_DIR=${BASE_PACKAGE_CONFIG_DIR}ZINC
+        ZINC_USE_OSMESA=${OPENCMISS_USE_OSMESA}
         OPENCMISSDEPENDENCIES_DIR=${_INSTALL_PREFIX}
     )
     if (ZINC_WITH_Python_BINDINGS)
         add_project(SWIGZINC
-            Zinc_DIR=${_INSTALL_PREFIX}/install/${COMMON_PACKAGE_CONFIG_DIR}ZINC
+            Zinc_DIR=${_INSTALL_PREFIX}/install/${BASE_PACKAGE_CONFIG_DIR}ZINC
             ${_ZINC_PYTHON_EXECUTABLE_CONFIG_PARAMETER}
         )
 

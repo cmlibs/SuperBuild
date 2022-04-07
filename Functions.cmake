@@ -6,7 +6,7 @@ function(check_ssh_github_access VAR_NAME)
     if (SSH_EXE)
         # This command always fail as github doesn't allow ssh access
         execute_process(
-            COMMAND ${SSH_EXE} git@github.com
+            COMMAND ${SSH_EXE} -o "StrictHostKeyChecking no" git@github.com
             RESULT_VARIABLE _RESULT
             ERROR_VARIABLE _ERR
             TIMEOUT 5
