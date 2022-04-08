@@ -60,8 +60,17 @@ set(ALL_PROJECTS CMAKE_MODULES)
 
 # load settings for mode
 include("Settings-pre")
+if (EXISTS "${CMAKE_CURRENT_BINARY_DIR}/Settings-pre.cmake")
+    include("${CMAKE_CURRENT_BINARY_DIR}/Settings-pre.cmake")
+endif()
 include("Settings-${OPENCMISS_MODE}")
+if (EXISTS "${CMAKE_CURRENT_BINARY_DIR}/Settings-${OPENCMISS_MODE}.cmake")
+    include("${CMAKE_CURRENT_BINARY_DIR}/Settings-${OPENCMISS_MODE}.cmake")
+endif()
 include("Settings-post")
+if (EXISTS "${CMAKE_CURRENT_BINARY_DIR}/Settings-post.cmake")
+    include("${CMAKE_CURRENT_BINARY_DIR}/Settings-post.cmake")
+endif()
 
 set(OPENCMISS_CMAKE_MODULES_SOURCE_DIR "${OPENCMISS_ROOT}/src/cmake_modules")
 set(OPENCMISS_CMAKE_MODULES_BINARY_DIR "${OPENCMISS_ROOT}/build${SINGLECONFIG_BUILD_DIR_LABEL}/cmake_modules")
