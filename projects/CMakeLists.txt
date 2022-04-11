@@ -23,12 +23,7 @@ find_package(Git)
 find_package(SWIG)
 find_package(Python COMPONENTS Interpreter Development)
 
-if (NOT GITHUB_PROTOCOL)
-    get_github_protocol(_GITHUB_PROTOCOL)
-endif()
-set(GITHUB_PROTOCOL ${_GITHUB_PROTOCOL} CACHE STRING "Set GitHub protocol.")
-mark_as_advanced(GITHUB_PROTOCOL)
-
+set(GITHUB_PROTOCOL ${OPENCMISS_GITHUB_PROTOCOL})
 
 set(OPENCMISS_PROJECTS ZINC SWIGZINC)
 set(UTILITIES_PROJECTS GTEST)
