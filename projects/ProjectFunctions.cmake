@@ -3,16 +3,16 @@ function(add_project _PROJECT_NAME)
     string(TOLOWER ${_PROJECT_NAME} FOLDER_NAME)
 
     # Compute directories
-    if (OPENCMISS_SETUP_TYPE STREQUAL "dependencies")
-        set(_PROJECT_SOURCE_DIR "${OPENCMISS_ROOT}/src/${FOLDER_NAME}")
-        set(_PROJECT_BINARY_DIR "${OPENCMISS_ROOT}/build${SINGLECONFIG_BUILD_DIR_LABEL}/${FOLDER_NAME}")
+    if (CMLIBS_SETUP_TYPE STREQUAL "dependencies")
+        set(_PROJECT_SOURCE_DIR "${CMLIBS_ROOT}/src/${FOLDER_NAME}")
+        set(_PROJECT_BINARY_DIR "${CMLIBS_ROOT}/build${SINGLECONFIG_BUILD_DIR_LABEL}/${FOLDER_NAME}")
     else()
         if (_PROJECT_NAME IN_LIST DEPENDENCY_PROJECTS)
-            set(_PROJECT_SOURCE_DIR "${OPENCMISS_ROOT}/src/dependencies/${FOLDER_NAME}")
-            set(_PROJECT_BINARY_DIR "${OPENCMISS_ROOT}/build${SINGLECONFIG_BUILD_DIR_LABEL}/dependencies/${FOLDER_NAME}")
+            set(_PROJECT_SOURCE_DIR "${CMLIBS_ROOT}/src/dependencies/${FOLDER_NAME}")
+            set(_PROJECT_BINARY_DIR "${CMLIBS_ROOT}/build${SINGLECONFIG_BUILD_DIR_LABEL}/dependencies/${FOLDER_NAME}")
         else()
-            set(_PROJECT_SOURCE_DIR "${OPENCMISS_ROOT}/src/${FOLDER_NAME}")
-            set(_PROJECT_BINARY_DIR "${OPENCMISS_ROOT}/build${SINGLECONFIG_BUILD_DIR_LABEL}/${FOLDER_NAME}")
+            set(_PROJECT_SOURCE_DIR "${CMLIBS_ROOT}/src/${FOLDER_NAME}")
+            set(_PROJECT_BINARY_DIR "${CMLIBS_ROOT}/build${SINGLECONFIG_BUILD_DIR_LABEL}/${FOLDER_NAME}")
         endif()
     endif()
 
@@ -25,7 +25,7 @@ function(add_project _PROJECT_NAME)
     )
 
     if (NOT IS_MULTI_CONFIG)
-        list(APPEND _PROJECT_DEFS -DCMAKE_BUILD_TYPE=${OPENCMISS_BUILD_TYPE})
+        list(APPEND _PROJECT_DEFS -DCMAKE_BUILD_TYPE=${CMLIBS_BUILD_TYPE})
     endif()
 
     # Shared or static?

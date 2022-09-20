@@ -11,7 +11,7 @@ set(EXTPROJ_STAMP_DIR ${EXTPROJ_BASE_DIR}/stamp)
 
 set(DEFAULT_UTILITIES_GITHUB_ORG OpenCMISS-utilities/)
 set(DEFAULT_DEPENDENCY_GITHUB_ORG OpenCMISS-dependencies/)
-set(DEFAULT_OPENCMISS_GITHUB_ORG OpenCMISS/)
+set(DEFAULT_CMLIBS_GITHUB_ORG OpenCMISS/)
 
 # Basic test for multi-configuration capable environments
 if (IS_MULTI_CONFIG)
