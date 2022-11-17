@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.10.0 FATAL_ERROR)
 
-if (NOT TARGET opencmissdependencies)
+if (NOT TARGET cmlibsdependencies)
 
     get_filename_component(_CMLIBS_DEPENDENCIES_IMPORT_PREFIX "${CMAKE_CURRENT_LIST_FILE}" DIRECTORY)
 
@@ -28,6 +28,6 @@ if (NOT TARGET opencmissdependencies)
         endif ()
     endforeach()
 
-    add_library(opencmissdependencies INTERFACE)
-    target_link_libraries(opencmissdependencies INTERFACE ${_found_targets})
+    add_library(cmlibsdependencies INTERFACE)
+    target_link_libraries(cmlibsdependencies INTERFACE ${_found_targets})
 endif()

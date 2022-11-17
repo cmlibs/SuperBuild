@@ -1,8 +1,8 @@
 
-OpenCMISS-Zinc Super Build
+CMLibs-Zinc Super Build
 ==========================
 
-A set of scripts to setup a developers installation of OpenCMISS-Zinc.
+A set of scripts to setup a developers installation of CMLibs Zinc library.
 
 Usage
 -----
@@ -27,5 +27,5 @@ where *<path-to-python>* is the absolute path to the Python executable to create
 Notes
 -----
 
-These set of scripts are only intended to setup a development installation of OpenCMISS-Zinc.
+These set of scripts are only intended to setup a development installation of CMLIBS Zinc library.
 When the installation has completed you can safely remove the *SuperBuild* and *build-superbuild* directories.

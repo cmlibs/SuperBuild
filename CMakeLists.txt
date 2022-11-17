@@ -1,7 +1,7 @@
 
 cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 
-project(ZincSuperBuild LANGUAGES C CXX)
+project(CMLibsSuperBuild LANGUAGES C CXX)
 
 cmake_policy(SET CMP0057 NEW)
 cmake_policy(SET CMP0054 NEW)
@@ -31,7 +31,7 @@ if (NOT IS_MULTI_CONFIG)
     set(CMLIBS_BUILD_TYPE Release CACHE STRING "Set the configuration build type.")
 endif()
 
-set(CMLIBS_ROOT "" CACHE PATH "The location of the OpenCMISS root directory, it must exist!")
+set(CMLIBS_ROOT "" CACHE PATH "The location of the CMLIBS root directory, it must exist!")
 set(BUILD_CONFIGS all dependencies)
 set(CMLIBS_SETUP_TYPE "all" CACHE STRING "Define what should be setup.")
 set_property(CACHE CMLIBS_SETUP_TYPE PROPERTY STRINGS ${BUILD_CONFIGS})
@@ -90,7 +90,7 @@ ExternalProject_Add(setup_cmake_modules
 set(CMLIBS_CMAKE_MODULE_PATH)
 list(APPEND CMLIBS_CMAKE_MODULE_PATH "${CMLIBS_CMAKE_MODULES_INSTALL_DIR}/share/cmake/Modules/FindModuleWrappers")
 list(APPEND CMLIBS_CMAKE_MODULE_PATH "${CMLIBS_CMAKE_MODULES_INSTALL_DIR}/share/cmake/Modules/")
-list(APPEND CMLIBS_CMAKE_MODULE_PATH "${CMLIBS_CMAKE_MODULES_INSTALL_DIR}/share/cmake/Modules/OpenCMISS")
+list(APPEND CMLIBS_CMAKE_MODULE_PATH "${CMLIBS_CMAKE_MODULES_INSTALL_DIR}/share/cmake/Modules/CMLIBS")
 
 string(REPLACE ";" "${LIST_SEPARATOR}" CMLIBS_CMAKE_MODULE_PATH "${CMLIBS_CMAKE_MODULE_PATH}")
 
