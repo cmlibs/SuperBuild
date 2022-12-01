@@ -11,7 +11,9 @@ if (NOT TARGET cmlibsdependencies)
     set(CMLIBS_MODULE_PATH @CONTEXT_CMLIBS_MODULE_PATH@)
     list(APPEND CMAKE_MODULE_PATH ${CMLIBS_MODULE_PATH})
 
-    include(OCMiscFunctions)
+    include(CMLMiscFunctions)
+
+    set(CMAKE_PREFIX_PATH "${_CMLIBS_DEPENDENCIES_IMPORT_PREFIX}")
 
     set(_REQUIRED_COMPONENTS @DEPENDENCY_PROJECTS@)
     set(_found_targets)

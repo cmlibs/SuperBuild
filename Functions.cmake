@@ -37,6 +37,7 @@ function(get_github_protocol VAR_NAME)
     endif ()
     message(STATUS "Using GitHub protocol: ${GITHUB_PROTOCOL}")
     set(${VAR_NAME} ${GITHUB_PROTOCOL} PARENT_SCOPE)
+    set(GITHUB_EXT ${GITHUB_EXT} PARENT_SCOPE)
 endfunction()
 
 function(set_override_value _TEST_LIST _VALUE_LIST _TEST_VALUE _VAR_NAME)
