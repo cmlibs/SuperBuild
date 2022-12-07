@@ -86,7 +86,6 @@ ExternalProject_Add(setup_cmake_modules
     CMAKE_ARGS ${SINGLECONFIG_BUILD_CONFIG} ${CMAKE_MODULES_ARGS}
     BUILD_COMMAND ""
 )
-    #INSTALL_COMMAND ${CMAKE_COMMAND} --build . --target install ${MULTICONFIG_BUILD_CONFIG}
 
 set(CMLIBS_CMAKE_MODULE_PATH)
 list(APPEND CMLIBS_CMAKE_MODULE_PATH "${CMLIBS_CMAKE_MODULES_INSTALL_DIR}/share/cmake/Modules/FindModuleWrappers")
@@ -113,9 +112,7 @@ ExternalProject_Add(setup_projects
     SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/projects
     BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR}/projects
     LIST_SEPARATOR ${LIST_SEPARATOR}
-    CMAKE_COMMAND ${CMAKE_COMMAND}
     CMAKE_ARGS ${SINGLECONFIG_BUILD_CONFIG} ${PROJECT_ARGS}
-	# Hopefully a build commmand suitable for a CMake generated project.
-    #BUILD_COMMAND ${CMAKE_COMMAND} --build . ${MULTICONFIG_BUILD_CONFIG}
+    # Use default build command for a CMake argumented project.
     INSTALL_COMMAND ""
 )

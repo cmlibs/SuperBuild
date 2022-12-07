@@ -49,30 +49,6 @@ endfunction()
 
 function(add_external_project _PROJECT_NAME SOURCE_DIR BINARY_DIR DEFS)
 
-    #set(BUILD_COMMAND ${CMAKE_COMMAND} --build "${BINARY_DIR}")
-    #set(INSTALL_COMMAND ${CMAKE_COMMAND} --build "${BINARY_DIR}" --target install)
-
-    if(PARALLEL_BUILDS)
-        include(ProcessorCount)
-        ProcessorCount(NUM_PROCESSORS)
-        if (NUM_PROCESSORS EQUAL 0)
-            set(NUM_PROCESSORS 1)
-        #else()
-        #    MATH(EXPR NUM_PROCESSORS ${NUM_PROCESSORS}+4)
-        endif()
-
-        if(CMAKE_GENERATOR MATCHES "^Unix Makefiles$"
-            OR CMAKE_GENERATOR MATCHES "^MinGW Makefiles$"
-            OR CMAKE_GENERATOR MATCHES "^NMake Makefiles$"
-            OR CMAKE_GENERATOR MATCHES "^MSYS Makefiles$")
-            set(GENERATOR_MATCH_MAKE TRUE)
-        endif()
-
-        #if(GENERATOR_MATCH_MAKE OR GENERATOR_MATCH_NMAKE)
-        #    list(APPEND BUILD_COMMAND -- "-j${NUM_PROCESSORS}")
-        #endif()
-    endif()
-
     set(_LOGFLAG ON)
 
     if (EXISTS ${SOURCE_DIR}/CMakeLists.txt)
@@ -99,19 +75,17 @@ function(add_external_project _PROJECT_NAME SOURCE_DIR BINARY_DIR DEFS)
         ${ZINC_ZLIB_PATCH_CMD}
 
         #--Configure step-------------
-        #CMAKE_COMMAND ${CMAKE_COMMAND} --no-warn-unused-cli # disables warnings for unused cmdline options
         SOURCE_DIR ${SOURCE_DIR}
         BINARY_DIR ${BINARY_DIR}
+
+        # Using CMake arguments sets the build and install commands to be CMake based commands
+        # which is what we want.
         CMAKE_ARGS ${DEFS}
 
         #--Build step-----------------
-		# Inherit build command?
-        #BUILD_COMMAND ${BUILD_COMMAND}
+        # Use the default build command.
         #--Install step---------------
-        # currently set as extra arg (above), somehow does not work
-        #INSTALL_DIR ${CMAKE_INSTALL_PREFIX}
-		# Use the default install command???
-        #INSTALL_COMMAND ${INSTALL_COMMAND}
+        # Use the default install command.
         # Logging
         LOG_CONFIGURE ${_LOGFLAG}
         LOG_BUILD ${_LOGFLAG}
