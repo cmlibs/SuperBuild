@@ -1,4 +1,5 @@
 # DO NOT EDIT. This is a generated file.
+include(CMakeFindDependencyMacro)
 
 cmake_minimum_required(VERSION 3.10.0 FATAL_ERROR)
 
@@ -20,7 +21,7 @@ if (NOT TARGET cmlibsdependencies)
     foreach(_component ${_REQUIRED_COMPONENTS})
         message(STATUS "Looking for ${_component} ...")
         get_module_case_sensitive_name(${_component} _case_name)
-        find_package(${_case_name} QUIET)
+        find_dependency(${_case_name} QUIET)
         if (${_component}_FOUND)
             get_module_targets(${_component} _targets)
             list(APPEND _found_targets ${_targets})
@@ -31,5 +32,6 @@ if (NOT TARGET cmlibsdependencies)
     endforeach()
 
     add_library(cmlibsdependencies INTERFACE)
-    target_link_libraries(cmlibsdependencies INTERFACE ${_found_targets})
+    set_target_properties(cmlibsdependencies PROPERTIES
+        INTERFACE_LINK_LIBRARIES "${_found_targets}")
 endif()
