@@ -9,7 +9,7 @@ Usage
 
 ::
 
- git clone https://github.com/hsorby/SuperBuild.git
+ git clone https://github.com/cmlibs/SuperBuild.git
  mkdir build-superbuild
  cd build-superbuild
  cmake -DCMLIBS_ROOT=<some-path-where-everything-goes> ../SuperBuild
