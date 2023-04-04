@@ -26,7 +26,7 @@ where *<path-to-python>* is the absolute path to the Python executable to create
 
 To build only the dependencies configure the build with *CMLIBS_SETUP_TYPE* set to *dependencies*::
 
- cmake -DCMLIBS_SETUP_TYPE=dependences -DCMLIBS_ROOT=<some-path-where-everything-goes> ../SuperBuild
+ cmake -DCMLIBS_SETUP_TYPE=dependencies -DCMLIBS_ROOT=<some-path-where-everything-goes> ../SuperBuild
 
 Notes
 -----
