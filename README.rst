@@ -13,6 +13,7 @@ Usage
  mkdir build-superbuild
  cd build-superbuild
  cmake -DCMLIBS_ROOT=<some-path-where-everything-goes> ../SuperBuild
+ cmake --build .
 
 where *<some-path-where-everything-goes>* is an absolute path on your hard drive where all the source, build, and installed files will be placed.
 Oh, and this directory *<some-path-where-everything-goes>* must exist **before** you can create the build configuration files.
