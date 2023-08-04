@@ -49,7 +49,7 @@ endfunction()
 
 function(add_external_project _PROJECT_NAME SOURCE_DIR BINARY_DIR DEFS)
 
-    set(_LOGFLAG OFF)
+    set(_LOGFLAG ON)
 
     if (EXISTS ${SOURCE_DIR}/CMakeLists.txt)
         message(STATUS "CMake ${_PROJECT_NAME} files are already present, skipping downloading them.")
