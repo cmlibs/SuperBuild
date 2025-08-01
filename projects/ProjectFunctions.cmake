@@ -31,7 +31,7 @@ function(add_project _PROJECT_NAME)
     # Shared or static?
     if (_PROJECT_NAME IN_LIST DEPENDENCY_PROJECTS)
       list(APPEND _PROJECT_DEFS -DBUILD_SHARED_LIBS=OFF)
-      list(APPEND _PROJECT_DEFS -DENABLE_PIC=ON)
+      list(APPEND _PROJECT_DEFS -DCMAKE_POSITION_INDEPENDENT_CODE=ON)
     endif()
 
     # Forward any other variables
@@ -49,7 +49,7 @@ endfunction()
 
 function(add_external_project _PROJECT_NAME SOURCE_DIR BINARY_DIR DEFS)
 
-    set(_LOGFLAG ON)
+    set(_LOGFLAG OFF)
 
     if (EXISTS ${SOURCE_DIR}/CMakeLists.txt)
         message(STATUS "CMake ${_PROJECT_NAME} files are already present, skipping downloading them.")
