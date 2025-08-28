@@ -198,7 +198,7 @@ if (GLEW IN_LIST ALL_PROJECTS)
         set(GLEW_BUILD_UTILS_PARAMETER BUILD_UTILS=OFF)
     endif ()
     add_project(GLEW
-        GLEW_BUILD_MESA=${CMLIBS_USE_MESA}
+        GLEW_USE_MESA=${CMLIBS_USE_MESA}
         ${GLEW_BUILD_UTILS_PARAMETER}
     )
 endif ()
